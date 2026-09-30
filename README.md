@@ -1,4 +1,4 @@
-# A Few Little Things for Muku 🌷
+# A Few Little Things for Kittu 🌷
 
 A beautiful, romantic red & pink digital envelope & letter gift built with HTML5, Vanilla CSS, and Vanilla JavaScript.
 
