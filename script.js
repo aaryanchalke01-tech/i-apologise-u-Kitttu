@@ -14,11 +14,13 @@ const herName = "Kittu";
 
 // ==================== MUSIC PLAYER CONTROL ====================
 // Start timestamp set to start=45 for the main chorus/vocal hook of Maiyya - Do Patti
-const songYouTubeId = "https://youtu.be/EFF9sI1mPcU?si=fpIb9LRMB_wqjK7C;
+// ==================== MUSIC PLAYER CONTROL ====================
+// Start timestamp set to start=45 for the main chorus/vocal hook of Maiyya - Do Patti
+const songYouTubeId = "EFF9sI1mPcU";
 const songStartSeconds = 45; // Starts at main peak of song (~45s)
 
 let isMuted = false;
-let musicStarted = true;
+let musicStarted = false;
 
 function startWithMusic() {
   injectYouTube();
