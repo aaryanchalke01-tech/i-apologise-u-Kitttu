@@ -1,5 +1,5 @@
 /**
- * A Few Little Things for Muku 🌷
+ * A Few Little Things for kittu 🌻
  * Complete Interactive Script
  * - Background YouTube Music Player (Starts at main hook ~45s)
  * - Screen Navigation State Machine
