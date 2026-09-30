@@ -113,7 +113,7 @@ const messages = [
   },
   {
     category: "💻 Technical explanation",
-    text: "i dont know aap manoge ya nahi manoge par ye chiz krne me bouth mehenag lagi hai and for u really really , tere liye mandir jau tere naam ka diya jalau.."
+    text: "i dont know aap manoge ya nahi manoge par ye chiz krne me bouth mehenat lagi hai and for u really really , tere liye mandir jau tere naam ka diya jalau.."
   },
   {
     category: "🌸 Something genuine",
