@@ -23,7 +23,7 @@ muku-messages/
 
 ## 🎵 Background Music Configuration
 
-The website includes **Maiyya – Do Patti** playing in the background.
+The website includes **Aakhon Se Batana** playing in the background.
 
 - **Audio Autoplay Fix**: Displays a stylish music prompt overlay on initial load (*"Open with Music 🎵"*), ensuring browsers allow auto-playing audio upon user click.
 - **Song Start Timestamp**: Configured to start at `start=45` (~45 seconds into the song) so that it plays the main chorus and vocal hook right when the reader opens the letters.
