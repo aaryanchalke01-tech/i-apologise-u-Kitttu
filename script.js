@@ -10,15 +10,15 @@
 
 // ==================== PERSONALIZATION ====================
 // Change herName to easily customize who this website is for!
-const herName = "Muku";
+const herName = "Kittu";
 
 // ==================== MUSIC PLAYER CONTROL ====================
 // Start timestamp set to start=45 for the main chorus/vocal hook of Maiyya - Do Patti
-const songYouTubeId = "Jm3X_a0_71E";
+const songYouTubeId = "https://youtu.be/EFF9sI1mPcU?si=fpIb9LRMB_wqjK7C;
 const songStartSeconds = 45; // Starts at main peak of song (~45s)
 
 let isMuted = false;
-let musicStarted = false;
+let musicStarted = true;
 
 function startWithMusic() {
   injectYouTube();
@@ -69,7 +69,7 @@ function toggleMusic() {
     if (btn) btn.textContent = 'Mute';
     if (icon) {
       icon.textContent = '🎵';
-      icon.classList.remove('paused');
+      icon.classList.remove('play');
     }
     return;
   }
@@ -92,44 +92,44 @@ function toggleMusic() {
 // Edit any of these 10 messages to customize what the letters say!
 const messages = [
   {
-    category: "🌷 A little reminder",
-    text: "You have a really nice energy. Talking to you somehow makes conversations feel easy and fun."
+    category: "🌷 Im so sorry Kittu",
+    text: "im so so so sorry kittu i really made u very sad these days and in apologise i have this for u 🥺"
   },
   {
-    category: "✨ Something I've noticed",
-    text: "You have this way of making even random conversations feel interesting. And honestly, that's a pretty nice quality to have."
+    category: "✨ something i wanna confess u",
+    text: "Please forgive me, Kittu. I always doubt you and get angry with you... it is entirely my fault. But ever since you stopped talking to me like you used to, I feel so distanced from u..🥺 I don't know what has happened to me. I am so, so sorry. I’ve troubled you and made you cry a lot, but please, forgive me. Please."
   },
   {
-    category: "😂 Important information",
-    text: "Your existence has already contributed an unreasonable amount of random conversations. Honestly, impressive. 😭"
+    category: "For you",
+    text: "Your existence has already contributed an unreasonable amount of random conversations. Honestly, impressive. "
   },
   {
     category: "🫶 Just saying",
-    text: "I'm genuinely glad our paths crossed. You're a really nice person to have around, and I'm happy we became friends."
+    text: "Im very thankful to u , aapne meri kis kis se jaan bachai hai yeh to ham sab jante hai... par saari meri galtiyo ki vajah se aj ap itne jyada ruthe ho ki ab shyd aisa lagta hai sab khatam hogya..."
   },
   {
     category: "🌙 A small reminder",
-    text: "I hope you never underestimate how much the little things you do can brighten someone's day."
+    text: "Par mene apse ek chiz sikhi he ki kisi bhi chiz ko paane ke liye pure aur sache mann se mehenat kroge to vo vaps ajayegi..."
   },
   {
     category: "💻 Technical explanation",
-    text: "I could've just sent you a normal message... But apparently I chose to spend hours building a website instead. 😭 So technically, this is friendship with unnecessary engineering."
+    text: "i dont know aap manoge ya nahi manoge par ye chiz krne me bouth mehenag lagi hai and for u really really , tere liye mandir jau tere naam ka diya jalau.."
   },
   {
     category: "🌸 Something genuine",
-    text: "You're still a relatively new friend, but you're already someone I'm really happy I got the chance to meet."
+    text: "Meri har ek galti pe aapne muje sahi rasta dikhaya meri har ek muskhil pe aap mera solution banke aaye aur mene apko hi itna dukh diya... im sorry kitty sorry 🥺"
   },
   {
-    category: "🧸 One thing I like",
-    text: "Some people take a long time to feel comfortable talking to. Somehow, talking to you just feels easy."
+    category: "One last chance one last hope ✨️",
+    text: "i dont know aap muje maaf kroge ya nahi par kittu im really dying without you mera ek ek mim ek ek jeene ka pal bouth jyada bura hogya h apke jane ke bad please ajao please... i beg u please🥺"
   },
   {
-    category: "✨ Keep this one",
-    text: "Keep being yourself. You have your own little way of making people around you feel comfortable, and that's something worth appreciating."
+    category: "im always with u forever ever and ever",
+    text: "i dont know kittu ki ab aisa kya baki reh gaya h jis se ap mano mene sab kuch sab kuch kr liya bhagwan ke pass tk roj jaara par jo hoga so hoga but no matter me apke sath tab bhi tha jab apko muskhil thi ab bhi hu aur hamesha rahuga..."
   },
   {
-    category: "😂 Final card before the final card",
-    text: "If you actually opened every single card... Respect. 😭 You officially survived my unnecessarily complicated way of saying something simple."
+    category: "ek aakhri baat meri jaan",
+    text: "Aap mere liye bouty important ho bouth bouth please ek aakhri moka dedo aur vaps ajao pls ajao pls i love you 🥺❤️🧿"
   }
 ];
 
