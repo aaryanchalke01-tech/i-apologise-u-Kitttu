@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Few Little Things for Muku 🌷</title>
+  <meta name="description" content="A cute, wholesome, appreciative digital envelope gift for Muku.">
+  
+  <!-- Google Fonts: Playfair Display, DM Sans, and Dancing Script for handwritten letters -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <style>
+:root {
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-letter: 'Dancing Script', 'Caveat', cursive;
+
+  /* Vibrant Romantic Red & Soft Rose Pink Palette */
+  --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #ffccd5 45%, #ff8fa3 100%);
+  --color-text-main: #3d0c15;
+  --color-text-muted: #8c2d42;
+  --color-accent-red: #d62839;
+  --color-accent-crimson: #e63946;
+  --color-accent-pink: #ff4d6d;
+  --color-accent-rose: #ff758f;
+  --color-accent-blush: #ffb3c1;
+  --color-gold-sparkle: #ffb703;
+
+  /* Glassmorphism System - Crimson & Rose Glow */
+  --glass-bg: rgba(255, 245, 247, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.9);
+  --glass-shadow: 0 16px 40px -8px rgba(214, 40, 57, 0.22), 
+                 0 8px 20px -4px rgba(214, 40, 57, 0.15);
+  --glass-card-border-radius: 28px;
+
+  /* Transitions */
+  --transition-fast: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-medium: 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-bounce: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+  color: var(--color-text-main);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+}
+
+#bg-canvas, #confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+#bg-canvas { z-index: 0; }
+#confetti-canvas { z-index: 99; }
+
+.app-container {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 40px);
+}
+
+/* Screen Transitions */
+.screen {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(18px) scale(0.98);
+  pointer-events: none;
+  transition: opacity var(--transition-medium), transform var(--transition-medium);
+  position: absolute;
+  inset: 0;
+  margin: auto;
+}
+
+.screen.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  position: relative;
+}
+
+.screen.hidden {
+  display: none !important;
+}
+
+/* Glassmorphism Red & Pink Card System */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--glass-card-border-radius);
+  padding: 40px 32px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    60deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.card-flower-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  display: inline-block;
+  animation: floatSoft 4s ease-in-out infinite;
+}
+
+.main-title {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-accent-red);
+  letter-spacing: -0.01em;
+}
+
+.main-title .dynamic-name {
+  color: var(--color-accent-pink);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.welcome-divider {
+  width: 48px;
+  height: 3.5px;
+  background: linear-gradient(90deg, var(--color-accent-red), var(--color-accent-rose));
+  border-radius: 99px;
+  margin: 24px auto;
+  opacity: 0.8;
+}
+
+.welcome-note {
+  font-size: 1.05rem;
+  color: var(--color-text-main);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-accent-red);
+  margin-bottom: 16px;
+}
+
+.card-top-tag, .surprise-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent-red);
+  background: rgba(214, 40, 57, 0.12);
+  padding: 5px 14px;
+  border-radius: 99px;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+/* Red & Pink Button Styling */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 99px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #d62839 0%, #ff4d6d 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 22px -4px rgba(214, 40, 57, 0.45);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 26px -4px rgba(214, 40, 57, 0.55);
+  background: linear-gradient(135deg, #c1121f 0%, #ff2a54 100%);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-accent-red);
+  border: 1.5px solid var(--color-accent-rose);
+  box-shadow: 0 4px 14px rgba(214, 40, 57, 0.1);
+}
+
+.btn-secondary:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  border-color: var(--color-accent-red);
+  color: var(--color-accent-red);
+  box-shadow: 0 6px 18px rgba(214, 40, 57, 0.2);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 1px solid rgba(214, 40, 57, 0.25);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--color-accent-red);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-accent-red);
+  outline-offset: 3px;
+}
+
+.btn-arrow {
+  transition: transform var(--transition-fast);
+}
+
+.btn:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Intro Body */
+.intro-body {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text-main);
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.thought-quote {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--color-accent-red);
+  background: rgba(255, 240, 243, 0.7);
+  padding: 12px 16px;
+  border-radius: 16px;
+  border-left: 3.5px solid var(--color-accent-red);
+  margin: 4px 0;
+}
+
+.highlight-text {
+  font-weight: 700;
+  color: var(--color-accent-crimson);
+}
+
+/* Progress Header */
+.progress-header {
+  width: 100%;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  padding: 0 4px;
+}
+
+.progress-track {
+  width: 100%;
+  height: 9px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 99px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 1px 3px rgba(214, 40, 57, 0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent-red), var(--color-accent-pink));
+  border-radius: 99px;
+  transition: width var(--transition-medium);
+}
+
+/* Red & Pink Envelope & Letter System */
+.card-stage {
+  width: 100%;
+  perspective: 1200px;
+  display: flex;
+  justify-content: center;
+}
+
+.envelope-wrapper {
+  width: 100%;
+  min-height: 420px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+.envelope {
+  width: 100%;
+  min-height: 380px;
+  background: linear-gradient(160deg, #ffffff 0%, #fff0f3 100%);
+  border: 2px solid var(--color-accent-rose);
+  border-radius: 24px;
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  transition: transform var(--transition-medium);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  background: linear-gradient(180deg, #ffccd5 0%, #ff8fa3 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 5;
+  border-bottom: 2px solid rgba(214, 40, 57, 0.15);
+}
+
+.envelope-wrapper.open .envelope-flap {
+  transform: rotateX(-180deg);
+  z-index: 1;
+}
+
+.envelope-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  z-index: 4;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.envelope-wrapper.open .envelope-front {
+  opacity: 0;
+  transform: scale(0.92);
+  pointer-events: none;
+}
+
+.envelope-heart-seal {
+  font-size: 3.8rem;
+  filter: drop-shadow(0 6px 12px rgba(214, 40, 57, 0.25));
+  animation: pulseHeart 2s ease-in-out infinite alternate;
+}
+
+.envelope-teaser {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.letter-paper {
+  position: absolute;
+  top: 20px;
+  width: calc(100% - 32px);
+  min-height: 380px;
+  background: #fffefb;
+  background-image: repeating-linear-gradient(
+    #fffefb,
+    #fffefb 31px,
+    #ffe6eb 32px
+  );
+  border: 2px double var(--color-accent-blush);
+  border-radius: 20px;
+  box-shadow: 0 14px 35px rgba(214, 40, 57, 0.2);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateY(40px) scale(0.92);
+  pointer-events: none;
+  z-index: 2;
+  transition: transform 0.65s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.4s ease;
+}
+
+.envelope-wrapper.open .letter-paper {
+  opacity: 1;
+  transform: translateY(-20px) scale(1);
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.letter-stamp {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 1.5rem;
+  background: #fff0f3;
+  border: 1.5px dashed var(--color-accent-pink);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.letter-category {
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+
+.letter-content-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  padding: 12px 0;
+}
+
+.letter-message-text {
+  font-family: var(--font-letter);
+  font-size: 1.75rem;
+  line-height: 1.55;
+  color: #a81c2a;
+  font-weight: 700;
+  text-align: center;
+  max-width: 95%;
+}
+
+.surprise-card, .final-trigger-card { gap: 16px; }
+
+.surprise-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 1.1rem;
+  margin-bottom: 24px;
+}
+
+.card-sparkle-icon {
+  font-size: 2.8rem;
+  margin-bottom: 8px;
+}
+
+.final-trigger-sub {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+.final-trigger-pause {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--color-accent-red);
+  margin-bottom: 28px;
+}
+
+.final-message-card {
+  text-align: left;
+  padding: 44px 36px;
+}
+
+.final-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.final-name {
+  font-family: var(--font-heading);
+  font-size: 2.4rem;
+  color: var(--color-accent-red);
+}
+
+.final-body {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--color-text-main);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.wholesome-callout {
+  text-align: center;
+  background: linear-gradient(135deg, rgba(214, 40, 57, 0.12), rgba(255, 77, 109, 0.12));
+  padding: 18px 22px;
+  border-radius: 20px;
+  border: 1.5px solid rgba(214, 40, 57, 0.25);
+  margin: 6px 0;
+}
+
+.wholesome-callout span {
+  font-family: var(--font-letter);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--color-accent-red);
+}
+
+.final-closing {
+  font-weight: 600;
+  color: var(--color-accent-crimson);
+  text-align: center;
+}
+
+.final-message-card .btn-primary { width: 100%; }
+
+.ending-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.ending-star {
+  font-size: 3rem;
+  animation: pulseHeart 2s infinite alternate;
+}
+
+.ending-heading {
+  font-family: var(--font-heading);
+  font-size: 2.1rem;
+  color: var(--color-accent-red);
+}
+
+.ending-note {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+}
+
+.ending-confession {
+  font-size: 1.05rem;
+  color: var(--color-text-main);
+  font-weight: 600;
+}
+
+.signature-tag {
+  font-size: 0.95rem;
+  color: var(--color-accent-red);
+  font-style: italic;
+  margin-top: 10px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+#toast-container {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+  width: 90%;
+  max-width: 380px;
+}
+
+.toast-message {
+  background: rgba(214, 40, 57, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+  padding: 12px 22px;
+  border-radius: 99px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(214, 40, 57, 0.3);
+  animation: toastIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+             toastOut 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards 3.2s;
+}
+
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseHeart {
+  0% { transform: scale(1); filter: drop-shadow(0 4px 8px rgba(214, 40, 57, 0.2)); }
+  100% { transform: scale(1.1); filter: drop-shadow(0 8px 18px rgba(214, 40, 57, 0.4)); }
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-10px) scale(0.95); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .envelope-flap { transform: none !important; }
+  .letter-paper { transform: none !important; opacity: 1 !important; }
+}
+
+@media (max-width: 480px) {
+  body { padding: 12px; }
+  .glass-card { padding: 30px 20px; border-radius: 22px; }
+  .main-title { font-size: 1.8rem; }
+  .section-title, .final-name, .ending-heading { font-size: 1.65rem; }
+  .letter-message-text { font-size: 1.45rem; }
+  .btn { padding: 12px 24px; font-size: 0.95rem; }
+}
+  </style>
+</head>
+<body>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <main class="app-container">
+    
+    <section id="screen-welcome" class="screen active" aria-labelledby="welcome-title">
+      <div class="glass-card welcome-card">
+        <div class="card-flower-icon" aria-hidden="true">💌</div>
+        <h1 id="welcome-title" class="main-title">A Few Little Things<br>for <span class="dynamic-name">Muku</span> 🌷</h1>
+        <p class="subtitle">Because apparently one website wasn't enough. 😭</p>
+        
+        <div class="welcome-divider"></div>
+        
+        <p class="welcome-note">No quiz this time.<br>Just open a few letters.</p>
+        
+        <button id="btn-welcome-start" class="btn btn-primary" type="button">
+          <span>Open the first letter</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="screen-intro" class="screen hidden" aria-labelledby="intro-title">
+      <div class="glass-card intro-card">
+        <div class="card-top-tag">Hello there 🌷</div>
+        <h2 id="intro-title" class="section-title">Okay, <span class="dynamic-name">Muku</span>...</h2>
+        
+        <div class="intro-body">
+          <p>I could've just sent you a few nice messages.</p>
+          <p>But apparently my brain decided:</p>
+          <blockquote class="thought-quote">"Why not turn it into a whole website?" 😭</blockquote>
+          <p>So here we are.</p>
+          <p class="highlight-text">Nothing complicated.<br>Nothing serious.</p>
+          <p>Just a few little letters I thought you deserved to hear. 💌</p>
+        </div>
+
+        <button id="btn-intro-next" class="btn btn-primary" type="button">
+          <span>Okay, show me</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="screen-messages" class="screen hidden" aria-label="Message Envelopes">
+      <header class="progress-header">
+        <div class="progress-info">
+          <span id="card-counter" class="counter-text">Little letter 1 of 10</span>
+          <span id="counter-percentage" class="percentage-text">10%</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="10" id="progress-bar-element">
+          <div id="progress-fill" class="progress-fill" style="width: 10%;"></div>
+        </div>
+      </header>
+
+      <div class="card-stage">
+        <div id="interactive-envelope" class="envelope-wrapper" tabindex="0" role="region" aria-live="polite">
+          <div class="envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-pocket-back"></div>
+            
+            <div class="envelope-front">
+              <div class="card-category-badge" id="card-category-front">🌷 A little reminder</div>
+              <div class="envelope-heart-seal" aria-hidden="true">💌</div>
+              <p class="envelope-teaser">There's a letter inside for you...</p>
+              <button id="btn-open-card" class="btn btn-primary btn-open-envelope" type="button">
+                <span>Open Envelope</span>
+                <span class="sparkle-icon" aria-hidden="true">✨</span>
+              </button>
+            </div>
+
+            <div class="letter-paper">
+              <div class="letter-stamp">🌷</div>
+              <div class="card-category-badge letter-category" id="card-category-back">🌷 A little reminder</div>
+              <div class="letter-content-wrapper">
+                <p id="card-message-text" class="letter-message-text">
+                  You have a really nice energy. Talking to you somehow makes conversations feel easy and fun.
+                </p>
+              </div>
+              <button id="btn-next-card" class="btn btn-primary" type="button">
+                <span>Next little letter</span>
+                <span class="btn-arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-midway" class="screen hidden" aria-labelledby="midway-title">
+      <div class="glass-card surprise-card">
+        <div class="surprise-badge">Pause ✨</div>
+        <h2 id="midway-title" class="section-title">Wait... one second 👀</h2>
+        
+        <div class="surprise-body">
+          <p>You thought this was just a collection of random messages, didn't you?</p>
+          <p class="highlight-text">There's still more envelopes left.</p>
+        </div>
+
+        <button id="btn-midway-continue" class="btn btn-primary" type="button">
+          <span>Continue</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="screen-final-card" class="screen hidden" aria-labelledby="final-card-title">
+      <div class="glass-card final-trigger-card">
+        <div class="card-sparkle-icon" aria-hidden="true">✨</div>
+        <h2 id="final-card-title" class="section-title">Okay...</h2>
+        <p class="final-trigger-sub">That's actually all of them.</p>
+        
+        <div class="final-trigger-pause">
+          <p>Well...<br>maybe not.</p>
+        </div>
+
+        <button id="btn-to-final-message" class="btn btn-primary" type="button">
+          <span>One last thing</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="screen-final-message" class="screen hidden" aria-labelledby="final-message-title">
+      <div class="glass-card final-message-card">
+        <div class="final-header">
+          <h2 id="final-message-title" class="final-name"><span class="dynamic-name">Muku</span>, 🌷</h2>
+        </div>
+
+        <div class="final-body">
+          <p>I'm genuinely glad I got to meet you.</p>
+          <p>You're a really lovely person to have around, and I hope we get to make plenty more random memories, conversations, and inside jokes.</p>
+          <p>You're still a new friend, but you're already someone I really appreciate.</p>
+          <p>So I guess this entire website was just my slightly ridiculous way of saying:</p>
+          <div class="wholesome-callout">
+            <span>I'm happy you're here. ✨</span>
+          </div>
+          <p class="final-closing">Stay exactly as wonderfully you as you are. 🌷</p>
+        </div>
+
+        <button id="btn-to-ending" class="btn btn-primary" type="button">
+          <span>Okay, I'm done being wholesome 😭</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="screen-ending" class="screen hidden" aria-labelledby="ending-title">
+      <div class="glass-card ending-card">
+        <div class="ending-star" aria-hidden="true">💌</div>
+        <h2 id="ending-title" class="ending-heading">Have a great day, <span class="dynamic-name">Muku</span> 🌷</h2>
+        
+        <p class="ending-note">And yes...</p>
+        <p class="ending-confession">I really did make an entire website for this. 😭</p>
+        
+        <div class="signature-tag">
+          — your unnecessarily technical friend
+        </div>
+
+        <div class="ending-actions">
+          <button id="btn-replay" class="btn btn-ghost" type="button">
+            <span>↺ Replay from start</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+const herName = "Muku";
+
+const messages = [
+  { category: "🌷 A little reminder", text: "You have a really nice energy. Talking to you somehow makes conversations feel easy and fun." },
+  { category: "✨ Something I've noticed", text: "You have this way of making even random conversations feel interesting. And honestly, that's a pretty nice quality to have." },
+  { category: "😂 Important information", text: "Your existence has already contributed an unreasonable amount of random conversations. Honestly, impressive. 😭" },
+  { category: "🫶 Just saying", text: "I'm genuinely glad our paths crossed. You're a really nice person to have around, and I'm happy we became friends." },
+  { category: "🌙 A small reminder", text: "I hope you never underestimate how much the little things you do can brighten someone's day." },
+  { category: "💻 Technical explanation", text: "I could've just sent you a normal message... But apparently I chose to spend hours building a website instead. 😭 So technically, this is friendship with unnecessary engineering." },
+  { category: "🌸 Something genuine", text: "You're still a relatively new friend, but you're already someone I'm really happy I got the chance to meet." },
+  { category: "🧸 One thing I like", text: "Some people take a long time to feel comfortable talking to. Somehow, talking to you just feels easy." },
+  { category: "✨ Keep this one", text: "Keep being yourself. You have your own little way of making people around you feel comfortable, and that's something worth appreciating." },
+  { category: "😂 Final card before the final card", text: "If you actually opened every single card... Respect. 😭 You officially survived my unnecessarily complicated way of saying something simple." }
+];
+
+let currentCardIndex = 0;
+let isCardOpen = false;
+let confettiAnimationId = null;
+
+const screens = {
+  welcome: document.getElementById("screen-welcome"),
+  intro: document.getElementById("screen-intro"),
+  messages: document.getElementById("screen-messages"),
+  midway: document.getElementById("screen-midway"),
+  finalCard: document.getElementById("screen-final-card"),
+  finalMessage: document.getElementById("screen-final-message"),
+  ending: document.getElementById("screen-ending")
+};
+
+const interactiveEnvelope = document.getElementById("interactive-envelope");
+const cardCategoryFront = document.getElementById("card-category-front");
+const cardCategoryBack = document.getElementById("card-category-back");
+const cardMessageText = document.getElementById("card-message-text");
+const cardCounter = document.getElementById("card-counter");
+const counterPercentage = document.getElementById("counter-percentage");
+const progressFill = document.getElementById("progress-fill");
+const progressBarElement = document.getElementById("progress-bar-element");
+const toastContainer = document.getElementById("toast-container");
+
+document.addEventListener("DOMContentLoaded", () => {
+  initializeSite();
+});
+
+function initializeSite() {
+  updateDynamicNames();
+  setupEventListeners();
+  initBackgroundParticles();
+}
+
+function updateDynamicNames() {
+  const nameElements = document.querySelectorAll(".dynamic-name");
+  nameElements.forEach(el => {
+    el.textContent = herName;
+  });
+}
+
+function showScreen(screenKey) {
+  Object.keys(screens).forEach(key => {
+    const screen = screens[key];
+    if (key === screenKey) {
+      screen.classList.remove("hidden");
+      void screen.offsetWidth;
+      screen.classList.add("active");
+    } else {
+      screen.classList.remove("active");
+      screen.classList.add("hidden");
+    }
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function setupEventListeners() {
+  document.getElementById("btn-welcome-start").addEventListener("click", () => showIntro());
+  document.getElementById("btn-intro-next").addEventListener("click", () => {
+    currentCardIndex = 0;
+    showMessagesScreen();
+  });
+
+  document.getElementById("btn-open-card").addEventListener("click", (e) => {
+    e.stopPropagation();
+    openEnvelope();
+  });
+
+  interactiveEnvelope.addEventListener("click", () => {
+    if (!isCardOpen) openEnvelope();
+  });
+
+  interactiveEnvelope.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      if (!isCardOpen) openEnvelope();
+    }
+  });
+
+  document.getElementById("btn-next-card").addEventListener("click", (e) => {
+    e.stopPropagation();
+    nextMessage();
+  });
+
+  document.getElementById("btn-midway-continue").addEventListener("click", () => {
+    currentCardIndex = 5;
+    showMessagesScreen();
+  });
+
+  document.getElementById("btn-to-final-message").addEventListener("click", () => showFinalMessage());
+  document.getElementById("btn-to-ending").addEventListener("click", () => showEnding());
+
+  document.getElementById("btn-replay").addEventListener("click", () => {
+    currentCardIndex = 0;
+    isCardOpen = false;
+    interactiveEnvelope.classList.remove("open");
+    showWelcome();
+  });
+}
+
+function showWelcome() { showScreen("welcome"); }
+function showIntro() { showScreen("intro"); }
+function showMessagesScreen() {
+  showScreen("messages");
+  renderCurrentCardState();
+}
+
+function renderCurrentCardState() {
+  const cardData = messages[currentCardIndex];
+  isCardOpen = false;
+  interactiveEnvelope.classList.remove("open");
+
+  cardCategoryFront.textContent = cardData.category;
+  cardCategoryBack.textContent = cardData.category;
+  cardMessageText.textContent = cardData.text;
+
+  const stepNumber = currentCardIndex + 1;
+  const total = messages.length;
+  const percent = Math.round((stepNumber / total) * 100);
+
+  cardCounter.textContent = `Little letter ${stepNumber} of ${total}`;
+  counterPercentage.textContent = `${percent}%`;
+  progressFill.style.width = `${percent}%`;
+
+  if (progressBarElement) {
+    progressBarElement.setAttribute("aria-valuenow", stepNumber);
+  }
+}
+
+function openEnvelope() {
+  if (isCardOpen) return;
+  isCardOpen = true;
+  interactiveEnvelope.classList.add("open");
+
+  if (currentCardIndex === 2) {
+    setTimeout(() => showToast("Okay, that one was important. 👀"), 700);
+  } else if (currentCardIndex === 6) {
+    setTimeout(() => showToast("I hope you're smiling right now. 😭"), 700);
+  }
+}
+
+function nextMessage() {
+  if (currentCardIndex === 4) {
+    showMidwaySurprise();
+    return;
+  }
+  if (currentCardIndex === 9) {
+    showFinalCardTrigger();
+    return;
+  }
+  currentCardIndex++;
+  renderCurrentCardState();
+}
+
+function showMidwaySurprise() { showScreen("midway"); }
+function showFinalCardTrigger() { showScreen("finalCard"); }
+function showFinalMessage() { showScreen("finalMessage"); }
+function showEnding() {
+  showScreen("ending");
+  triggerConfetti();
+}
+
+function showToast(message) {
+  const toast = document.createElement("div");
+  toast.className = "toast-message";
+  toast.textContent = message;
+  toastContainer.appendChild(toast);
+  setTimeout(() => {
+    if (toast.parentNode) toast.parentNode.removeChild(toast);
+  }, 3800);
+}
+
+function initBackgroundParticles() {
+  const canvas = document.getElementById("bg-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  let width = (canvas.width = window.innerWidth);
+  let height = (canvas.height = window.innerHeight);
+
+  window.addEventListener("resize", () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const particleTypes = ["♡", "♥", "✦", "✧", "dot"];
+  const particleCount = prefersReducedMotion ? 12 : 36;
+
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(initial = false) {
+      this.x = Math.random() * width;
+      this.y = initial ? Math.random() * height : height + 20;
+      this.size = Math.random() * 14 + 10;
+      this.speedY = Math.random() * 0.45 + 0.18;
+      this.speedX = (Math.random() - 0.5) * 0.35;
+      this.type = particleTypes[Math.floor(Math.random() * particleTypes.length)];
+      this.opacity = Math.random() * 0.45 + 0.25;
+      const colors = ["rgba(214, 40, 57, ", "rgba(230, 57, 70, ", "rgba(255, 77, 109, ", "rgba(255, 117, 143, "];
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.angle = Math.random() * Math.PI * 2;
+    }
+    update() {
+      if (prefersReducedMotion) return;
+      this.y -= this.speedY;
+      this.x += Math.sin(this.angle) * this.speedX;
+      this.angle += 0.012;
+      if (this.y < -30) this.reset(false);
+    }
+    draw() {
+      ctx.save();
+      ctx.globalAlpha = this.opacity;
+      if (this.type === "dot") {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size / 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = this.color + this.opacity + ")";
+        ctx.shadowColor = this.color + "0.6)";
+        ctx.shadowBlur = 10;
+        ctx.fill();
+      } else {
+        ctx.font = `${this.size}px sans-serif`;
+        ctx.fillStyle = this.color + this.opacity + ")";
+        ctx.textAlign = "center";
+        ctx.fillText(this.type, this.x, this.y);
+      }
+      ctx.restore();
+    }
+  }
+
+  const particles = Array.from({ length: particleCount }, () => new Particle());
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  }
+  animate();
+}
+
+function triggerConfetti() {
+  const canvas = document.getElementById("confetti-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  let width = (canvas.width = window.innerWidth);
+  let height = (canvas.height = window.innerHeight);
+
+  const colors = ["#d62839", "#e63946", "#ff4d6d", "#ff758f", "#ffb3c1", "#ffffff", "#ffb703"];
+  const pieces = [];
+  const pieceCount = 85;
+
+  for (let i = 0; i < pieceCount; i++) {
+    pieces.push({
+      x: width / 2,
+      y: height / 2 + 50,
+      vx: (Math.random() - 0.5) * 13,
+      vy: (Math.random() - 0.72) * 15,
+      size: Math.random() * 9 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rotation: Math.random() * 360,
+      rotationSpeed: (Math.random() - 0.5) * 12,
+      opacity: 1
+    });
+  }
+
+  let frame = 0;
+  function renderConfetti() {
+    ctx.clearRect(0, 0, width, height);
+    let active = false;
+
+    pieces.forEach(p => {
+      if (p.opacity <= 0) return;
+      active = true;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.26;
+      p.vx *= 0.98;
+      p.rotation += p.rotationSpeed;
+      p.opacity -= 0.0075;
+
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, p.opacity);
+      ctx.translate(p.x, p.y);
+      ctx.rotate((p.rotation * Math.PI) / 180);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+      ctx.restore();
+    });
+
+    frame++;
+    if (active && frame < 300) {
+      confettiAnimationId = requestAnimationFrame(renderConfetti);
+    } else {
+      ctx.clearRect(0, 0, width, height);
+    }
+  }
+
+  if (confettiAnimationId) cancelAnimationFrame(confettiAnimationId);
+  renderConfetti();
+}
+  </script>
+</body>
+</html>

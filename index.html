@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Few Little Things for Muku 🌷</title>
+  <meta name="description" content="A cute, wholesome, appreciative digital envelope gift for Muku.">
+  
+  <!-- Google Fonts: Playfair Display, DM Sans, Dancing Script & Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Music Overlay Prompt -->
+  <div id="music-overlay">
+    <div id="music-overlay-card">
+      <div id="music-overlay-emoji">🎵</div>
+      <div id="music-overlay-title">A Few Little Things for Muku</div>
+      <div id="music-overlay-sub">Maiyya – Do Patti is playing in the background</div>
+      <button id="btn-start-music" onclick="startWithMusic()">Open with Music 🎵</button>
+      <button id="btn-skip-music" onclick="startWithoutMusic()">Skip music</button>
+    </div>
+  </div>
+
+  <!-- Hidden YouTube iframe container -->
+  <div id="yt-container"></div>
+
+  <!-- Floating Music Control Pill -->
+  <div id="music-player" title="Toggle music" onclick="toggleMusic()">
+    <span class="music-icon" id="music-icon">🎵</span>
+    <span class="music-label">Maiyya – Do Patti</span>
+    <button class="music-toggle" id="music-btn">Mute</button>
+  </div>
+
+  <!-- Floating Background Particle Canvas -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- Toast Container -->
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <main class="app-container">
+    
+    <!-- SCREEN 1: WELCOME -->
+    <section id="screen-welcome" class="screen active" aria-labelledby="welcome-title">
+      <div class="glass-card welcome-card">
+        <div class="card-flower-icon" aria-hidden="true">💌</div>
+        <h1 id="welcome-title" class="main-title">A Few Little Things<br>for <span class="dynamic-name">Muku</span> 🌷</h1>
+        <p class="subtitle">Because apparently one website wasn't enough. 😭</p>
+        
+        <div class="welcome-divider"></div>
+        
+        <p class="welcome-note">No quiz this time.<br>Just open a few letters.</p>
+        
+        <button id="btn-welcome-start" class="btn btn-primary" type="button">
+          <span>Open the first letter</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: INTRODUCTION -->
+    <section id="screen-intro" class="screen hidden" aria-labelledby="intro-title">
+      <div class="glass-card intro-card">
+        <div class="card-top-tag">Hello there 🌷</div>
+        <h2 id="intro-title" class="section-title">Okay, <span class="dynamic-name">Muku</span>...</h2>
+        
+        <div class="intro-body">
+          <p>I could've just sent you a few nice messages.</p>
+          <p>But apparently my brain decided:</p>
+          <blockquote class="thought-quote">"Why not turn it into a whole website?" 😭</blockquote>
+          <p>So here we are.</p>
+          <p class="highlight-text">Nothing complicated.<br>Nothing serious.</p>
+          <p>Just a few little letters I thought you deserved to hear. 💌</p>
+        </div>
+
+        <button id="btn-intro-next" class="btn btn-primary" type="button">
+          <span>Okay, show me</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: MESSAGE ENVELOPES -->
+    <section id="screen-messages" class="screen hidden" aria-label="Message Envelopes">
+      <header class="progress-header">
+        <div class="progress-info">
+          <span id="card-counter" class="counter-text">Little letter 1 of 10</span>
+          <span id="counter-percentage" class="percentage-text">10%</span>
+        </div>
+        <div class="progress-track" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="10" id="progress-bar-element">
+          <div id="progress-fill" class="progress-fill" style="width: 10%;"></div>
+        </div>
+      </header>
+
+      <div class="card-stage">
+        <div id="interactive-envelope" class="envelope-wrapper" tabindex="0" role="region" aria-live="polite">
+          <div class="envelope">
+            <div class="envelope-flap"></div>
+            
+            <div class="envelope-front">
+              <div class="card-category-badge" id="card-category-front">🌷 A little reminder</div>
+              <div class="envelope-heart-seal" aria-hidden="true">💌</div>
+              <p class="envelope-teaser">There's a letter inside for you...</p>
+              <button id="btn-open-card" class="btn btn-primary" type="button">
+                <span>Open Envelope</span>
+                <span aria-hidden="true">✨</span>
+              </button>
+            </div>
+
+            <div class="letter-paper">
+              <div class="letter-stamp">🌷</div>
+              <div class="card-category-badge letter-category" id="card-category-back">🌷 A little reminder</div>
+              <div class="letter-content-wrapper">
+                <p id="card-message-text" class="letter-message-text">
+                  You have a really nice energy. Talking to you somehow makes conversations feel easy and fun.
+                </p>
+              </div>
+              <button id="btn-next-card" class="btn btn-primary" type="button">
+                <span>Next little letter</span>
+                <span class="btn-arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: MIDWAY SURPRISE -->
+    <section id="screen-midway" class="screen hidden" aria-labelledby="midway-title">
+      <div class="glass-card surprise-card">
+        <div class="surprise-badge">Pause ✨</div>
+        <h2 id="midway-title" class="section-title">Wait... one second 👀</h2>
+        
+        <div class="surprise-body">
+          <p>You thought this was just a collection of random messages, didn't you?</p>
+          <p class="highlight-text">There's still more envelopes left.</p>
+        </div>
+
+        <button id="btn-midway-continue" class="btn btn-primary" type="button">
+          <span>Continue</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 5: FINAL CARD TRIGGER -->
+    <section id="screen-final-card" class="screen hidden" aria-labelledby="final-card-title">
+      <div class="glass-card final-trigger-card">
+        <div class="card-sparkle-icon" aria-hidden="true">✨</div>
+        <h2 id="final-card-title" class="section-title">Okay...</h2>
+        <p class="final-trigger-sub">That's actually all of them.</p>
+        
+        <div class="final-trigger-pause">
+          <p>Well...<br>maybe not.</p>
+        </div>
+
+        <button id="btn-to-final-message" class="btn btn-primary" type="button">
+          <span>One last thing</span>
+          <span class="btn-arrow" aria-hidden="true">→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 6: FINAL MESSAGE -->
+    <section id="screen-final-message" class="screen hidden" aria-labelledby="final-message-title">
+      <div class="glass-card final-message-card">
+        <div class="final-header">
+          <h2 id="final-message-title" class="final-name"><span class="dynamic-name">Muku</span>, 🌷</h2>
+        </div>
+
+        <div class="final-body">
+          <p>I'm genuinely glad I got to meet you.</p>
+          <p>You're a really lovely person to have around, and I hope we get to make plenty more random memories, conversations, and inside jokes.</p>
+          <p>You're still a new friend, but you're already someone I really appreciate.</p>
+          <p>So I guess this entire website was just my slightly ridiculous way of saying:</p>
+          <div class="wholesome-callout">
+            <span>I'm happy you're here. ✨</span>
+          </div>
+          <p class="final-closing">Stay exactly as wonderfully you as you are. 🌷</p>
+        </div>
+
+        <button id="btn-to-ending" class="btn btn-primary" type="button">
+          <span>Okay, I'm done being wholesome 😭</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 7: ENDING -->
+    <section id="screen-ending" class="screen hidden" aria-labelledby="ending-title">
+      <div class="glass-card ending-card">
+        <div class="ending-star" aria-hidden="true">💌</div>
+        <h2 id="ending-title" class="ending-heading">Have a great day, <span class="dynamic-name">Muku</span> 🌷</h2>
+        
+        <p class="ending-note">And yes...</p>
+        <p class="ending-confession">I really did make an entire website for this. 😭</p>
+        
+        <div class="signature-tag">
+          — your unnecessarily technical friend
+        </div>
+
+        <div class="ending-actions">
+          <button id="btn-replay" class="btn btn-ghost" type="button">
+            <span>↺ Replay from start</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
